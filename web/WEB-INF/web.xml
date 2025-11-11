@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="6.0" xmlns="https://jakarta.ee/xml/ns/jakartaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd">
+    <servlet>
+        <servlet-name>NewServlet</servlet-name>
+        <servlet-class>servlet.NewServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ReaderStatisticServlet</servlet-name>
+        <servlet-class>servlet.ReaderStatisticServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>BorrowSlipServlet</servlet-name>
+        <servlet-class>servlet.BorrowSlipServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>BorrowDocumentServlet</servlet-name>
+        <servlet-class>servlet.BorrowDocumentServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DocumentServlet</servlet-name>
+        <servlet-class>servlet.DocumentServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>NewServlet</servlet-name>
+        <url-pattern>/NewServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ReaderStatisticServlet</servlet-name>
+        <url-pattern>/ReaderStatisticServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BorrowSlipServlet</servlet-name>
+        <url-pattern>/BorrowSlipServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BorrowDocumentServlet</servlet-name>
+        <url-pattern>/BorrowDocumentServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DocumentServlet</servlet-name>
+        <url-pattern>/DocumentServlet</url-pattern>
+    </servlet-mapping>
+</web-app>

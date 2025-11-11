@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/C:/Users/Admin/Documents/NetBeansProjects/LibMan/src/java/model/User.java</file>
+            <file>file:/C:/Users/Admin/Documents/NetBeansProjects/LibMan/src/java/servlet/ReaderStatisticServlet.java</file>
+            <file>file:/C:/Users/Admin/Documents/NetBeansProjects/LibMan/src/java/model/Document.java</file>
+            <file>file:/C:/Users/Admin/Documents/NetBeansProjects/LibMan/src/java/dao/UserDAO.java</file>
+            <file>file:/C:/Users/Admin/Documents/NetBeansProjects/LibMan/src/java/dao/ReaderStatisticDAO.java</file>
+            <file>file:/C:/Users/Admin/Documents/NetBeansProjects/LibMan/src/java/model/ReaderStatistic.java</file>
+            <file>file:/C:/Users/Admin/Documents/NetBeansProjects/LibMan/src/java/servlet/UserServlet.java</file>
+            <file>file:/C:/Users/Admin/Documents/NetBeansProjects/LibMan/Other%20Sources/newfile</file>
+            <file>file:/C:/Users/Admin/Documents/NetBeansProjects/LibMan/src/java/model/Reader.java</file>
+            <file>file:/C:/Users/Admin/Documents/NetBeansProjects/LibMan/web/manager/ViewReaderBorrowingStatistic.jsp</file>
+            <file>file:/C:/Users/Admin/Documents/NetBeansProjects/LibMan/web/reader/ViewSearchDocument.jsp</file>
+            <file>file:/C:/Users/Admin/Documents/NetBeansProjects/LibMan/web/manager/ViewReaderBorrowingDetail.jsp</file>
+            <file>file:/C:/Users/Admin/Documents/NetBeansProjects/LibMan/web/reader/ViewDetailDocument.jsp</file>
+            <file>file:/C:/Users/Admin/Documents/NetBeansProjects/LibMan/src/java/model/Manager.java</file>
+            <file>file:/C:/Users/Admin/Documents/NetBeansProjects/LibMan/web/manager/ViewSlipDetail.jsp</file>
+            <file>file:/C:/Users/Admin/Documents/NetBeansProjects/LibMan/src/java/model/BorrowSlip.java</file>
+            <file>file:/C:/Users/Admin/Documents/NetBeansProjects/LibMan/src/java/model/BorrowDocument.java</file>
+            <file>file:/C:/Users/Admin/Documents/NetBeansProjects/LibMan/web/manager/ViewStatistic.jsp</file>
+            <file>file:/C:/Users/Admin/Documents/NetBeansProjects/LibMan/src/java/dao/BorrowSlipDAO.java</file>
+            <file>file:/C:/Users/Admin/Documents/NetBeansProjects/LibMan/src/java/dao/DocumentDAO.java</file>
+            <file>file:/C:/Users/Admin/Documents/NetBeansProjects/LibMan/web/user/Login.jsp</file>
+            <file>file:/C:/Users/Admin/Documents/NetBeansProjects/LibMan/web/manager/ViewManagerPage.jsp</file>
+            <file>file:/C:/Users/Admin/Documents/NetBeansProjects/LibMan/src/java/servlet/BorrowSlipServlet.java</file>
+            <file>file:/C:/Users/Admin/Documents/NetBeansProjects/LibMan/src/java/servlet/DocumentServlet.java</file>
+            <file>file:/C:/Users/Admin/Documents/NetBeansProjects/LibMan/web/reader/ViewReaderPage.jsp</file>
+        </group>
+    </open-files>
+</project-private>

@@ -1,0 +1,266 @@
+-- =======================================
+-- DATABASE: Libman
+-- =======================================
+CREATE DATABASE IF NOT EXISTS libman;
+USE libman;
+
+-- =======================================
+-- BẢNG NGƯỜI DÙNG (USER)
+-- =======================================
+CREATE TABLE tblUser (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    username VARCHAR(255) UNIQUE NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    name VARCHAR(255) NOT NULL,
+    address VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    phone VARCHAR(255) NOT NULL,
+    role ENUM('reader', 'manager') NOT NULL
+);
+
+-- =======================================
+-- BẢNG ĐỘC GIẢ (READER)
+-- =======================================
+CREATE TABLE tblReaderLibraryCard (
+    id INT PRIMARY KEY,
+    studentCode VARCHAR(255) UNIQUE NOT NULL,
+    cardId INT UNIQUE NOT NULL,
+    issueDate DATE NOT NULL, 
+    expiryDate DATE NOT NULL,
+    FOREIGN KEY (id) REFERENCES tblUser(id)
+        ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+-- =======================================
+-- BẢNG TÀI LIỆU
+-- =======================================
+CREATE TABLE tblDocument (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    author VARCHAR(255) NOT NULL,
+    name VARCHAR(255) NOT NULL,
+    genre VARCHAR(255) NOT NULL,
+    coverPrice FLOAT NOT NULL
+);
+
+-- =======================================
+-- BẢNG PHIẾU MƯỢN
+-- =======================================
+CREATE TABLE tblBorrowSlip (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    borrowDate DATE NOT NULL,
+    dueDate DATE NOT NULL, 
+    readerId INT NOT NULL,
+    FOREIGN KEY (readerId) REFERENCES tblReaderLibraryCard(id)
+        ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+-- =======================================
+-- BẢNG CHI TIẾT MƯỢN TÀI LIỆU
+-- =======================================
+CREATE TABLE tblBorrowDocument (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    borrowSlipId INT NOT NULL,
+    documentId INT NOT NULL,
+    FOREIGN KEY (borrowSlipId) REFERENCES tblBorrowSlip(id)
+        ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (documentId) REFERENCES tblDocument(id)
+        ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+-- =======================================
+-- DỮ LIỆU NGƯỜI DÙNG
+-- =======================================
+INSERT INTO tblUser (username, password, name, address, email, phone, role) VALUES
+('manager1', '123456', 'Nguyễn Văn Quản Lý', 'Hà Nội', 'manager1@libman.edu.vn', '0900000001', 'manager'),
+('reader1', '123456', 'Trần Thị A', 'Hà Nội', 'reader1@libman.edu.vn', '0900000002', 'reader'),
+('reader2', '123456', 'Lê Văn B', 'Hà Nội', 'reader2@libman.edu.vn', '0900000003', 'reader'),
+('reader3', '123456', 'Phạm Thị C', 'Hà Nội', 'reader3@libman.edu.vn', '0900000004', 'reader'),
+('reader4', '123456', 'Nguyễn Văn D', 'Hà Nội', 'reader4@libman.edu.vn', '0900000005', 'reader'),
+('reader5', '123456', 'Đỗ Thị E', 'Hà Nội', 'reader5@libman.edu.vn', '0900000006', 'reader'),
+('reader6', '123456', 'Hoàng Văn F', 'Hà Nội', 'reader6@libman.edu.vn', '0900000007', 'reader'),
+('reader7', '123456', 'Vũ Thị G', 'Hà Nội', 'reader7@libman.edu.vn', '0900000008', 'reader'),
+('reader8', '123456', 'Trần Văn H', 'Hà Nội', 'reader8@libman.edu.vn', '0900000009', 'reader'),
+('reader9', '123456', 'Phạm Thị I', 'Hà Nội', 'reader9@libman.edu.vn', '0900000010', 'reader'),
+('reader10', '123456', 'Nguyễn Văn K', 'Hà Nội', 'reader10@libman.edu.vn', '0900000011', 'reader'),
+('reader12', '123456', 'Lê Anh Tuấn', 'Đà Nẵng', 'tuanle@example.com', '0908000001', 'reader'),
+('reader13', '123456', 'Phan Thị Minh', 'Hà Nội', 'minhphan@example.com', '0908000002', 'reader'),
+('reader14', '123456', 'Ngô Văn Lâm', 'Huế', 'lamngo@example.com', '0908000003', 'reader'),
+('reader15', '123456', 'Đinh Thị Hoa', 'TP.HCM', 'hoadinh@example.com', '0908000004', 'reader'),
+('reader16', '123456', 'Vũ Quốc Khánh', 'Cần Thơ', 'khanhvu@example.com', '0908000005', 'reader'),
+('reader17', '123456', 'Hoàng Thị Bích', 'Hà Nam', 'bichhoang@example.com', '0908000006', 'reader'),
+('reader18', '123456', 'Nguyễn Hải Yến', 'Hải Phòng', 'yennguyen@example.com', '0908000007', 'reader'),
+('reader19', '123456', 'Phạm Văn Dũng', 'Đồng Nai', 'dungpham@example.com', '0908000008', 'reader'),
+('reader20', '123456', 'Trần Thị Nga', 'Bắc Ninh', 'ngatran@example.com', '0908000009', 'reader'),
+('reader21', '123456', 'Đoàn Minh Khoa', 'Bình Dương', 'khoadoan@example.com', '0908000010', 'reader');
+
+-- =======================================
+-- DỮ LIỆU ĐỘC GIẢ
+-- =======================================
+INSERT INTO tblReaderLibraryCard (id, studentCode, cardId, issueDate, expiryDate) VALUES
+(2, 'B22DCCN001', 1001, '2024-01-01', '2027-01-01'),
+(3, 'B22DCCN002', 1002, '2024-01-01', '2027-01-01'),
+(4, 'B22DCCN003', 1003, '2024-01-01', '2027-01-01'),
+(5, 'B22DCCN004', 1004, '2024-01-01', '2027-01-01'),
+(6, 'B22DCCN005', 1005, '2024-01-01', '2027-01-01'),
+(7, 'B22DCCN006', 1006, '2024-01-01', '2027-01-01'),
+(8, 'B22DCCN007', 1007, '2024-01-01', '2027-01-01'),
+(9, 'B22DCCN008', 1008, '2024-01-01', '2027-01-01'),
+(10, 'B22DCCN009', 1009, '2024-01-01', '2027-01-01'),
+(11, 'B22DCCN010', 1010, '2024-01-01', '2027-01-01'),
+(12, 'B22DCCN012', 2012, '2024-01-01', '2026-01-01'),
+(13, 'B22DCCN013', 2013, '2024-01-01', '2026-01-01'),
+(14, 'B22DCCN014', 2014, '2024-01-01', '2026-01-01'),
+(15, 'B22DCCN015', 2015, '2024-01-01', '2026-01-01'),
+(16, 'B22DCCN016', 2016, '2024-01-01', '2026-01-01'),
+(17, 'B22DCCN017', 2017, '2024-01-01', '2026-01-01'),
+(18, 'B22DCCN018', 2018, '2024-01-01', '2026-01-01'),
+(19, 'B22DCCN019', 2019, '2024-01-01', '2026-01-01'),
+(20, 'B22DCCN020', 2020, '2024-01-01', '2026-01-01'),
+(21, 'B22DCCN021', 2021, '2024-01-01', '2026-01-01');
+
+-- =======================================
+-- DỮ LIỆU TÀI LIỆU
+-- =======================================
+INSERT INTO tblDocument (author, name, genre, coverPrice) VALUES
+('Y. Daniel Liang', 'Introduction to Java Programming', 'Lập trình Java', 150000),
+('Herbert Schildt', 'C++ The Complete Reference', 'Lập trình C++', 180000),
+('Brian W. Kernighan & Dennis M. Ritchie', 'The C Programming Language', 'Lập trình C', 120000),
+('Mark Lutz', 'Learning Python', 'Lập trình Python', 200000),
+('Eric Matthes', 'Python Crash Course', 'Lập trình Python', 180000),
+('Thomas H. Cormen', 'Introduction to Algorithms', 'Thuật toán', 250000),
+('Donald Knuth', 'The Art of Computer Programming', 'Thuật toán', 300000),
+('Abraham Silberschatz', 'Database System Concepts', 'Cơ sở dữ liệu', 220000),
+('Ramez Elmasri', 'Fundamentals of Database Systems', 'Cơ sở dữ liệu', 210000),
+('Andrew S. Tanenbaum', 'Computer Networks', 'Mạng máy tính', 230000),
+('William Stallings', 'Data and Computer Communications', 'Mạng máy tính', 240000),
+('Andrew S. Tanenbaum', 'Modern Operating Systems', 'Hệ điều hành', 250000),
+('Abraham Silberschatz', 'Operating System Concepts', 'Hệ điều hành', 240000),
+('Ian Sommerville', 'Software Engineering', 'Kỹ nghệ phần mềm', 200000),
+('Roger S. Pressman', 'Software Engineering: A Practitioner’s Approach', 'Kỹ nghệ phần mềm', 210000),
+('Stuart Russell & Peter Norvig', 'Artificial Intelligence: A Modern Approach', 'Trí tuệ nhân tạo', 300000),
+('Sebastian Raschka', 'Python Machine Learning', 'Học máy', 220000),
+('Aurélien Géron', 'Hands-On Machine Learning with Scikit-Learn and TensorFlow', 'Học máy', 240000),
+('François Chollet', 'Deep Learning with Python', 'Học sâu', 250000),
+('Goodfellow, Bengio, Courville', 'Deep Learning', 'Học sâu', 260000),
+('James F. Kurose & Keith W. Ross', 'Computer Networking: A Top-Down Approach', 'Mạng máy tính', 230000),
+('James Patterson', 'Computer Organization and Design', 'Kiến trúc máy tính', 220000),
+('David A. Patterson', 'Computer Architecture: A Quantitative Approach', 'Kiến trúc máy tính', 260000),
+('Robert C. Martin', 'Clean Code', 'Lập trình nâng cao', 190000),
+('Robert C. Martin', 'Clean Architecture', 'Thiết kế phần mềm', 200000),
+('Martin Fowler', 'Refactoring: Improving the Design of Existing Code', 'Thiết kế phần mềm', 220000),
+('Erich Gamma et al.', 'Design Patterns: Elements of Reusable Object-Oriented Software', 'Thiết kế phần mềm', 210000),
+('Jon Duckett', 'HTML and CSS: Design and Build Websites', 'Lập trình web', 150000),
+('Marijn Haverbeke', 'Eloquent JavaScript', 'Lập trình web', 160000),
+('Kyle Simpson', 'You Don’t Know JS', 'Lập trình web', 170000),
+('David Flanagan', 'JavaScript: The Definitive Guide', 'Lập trình web', 180000),
+('Ethan Brown', 'Web Development with Node and Express', 'Lập trình web', 190000),
+('Robin Nixon', 'Learning PHP, MySQL & JavaScript', 'Lập trình web', 200000),
+('Alex Banks & Eve Porcello', 'Learning React', 'Lập trình web', 210000),
+('Matt Frisbie', 'Professional JavaScript for Web Developers', 'Lập trình web', 220000),
+('Gene Kim', 'The DevOps Handbook', 'DevOps', 230000),
+('Kelsey Hightower', 'Kubernetes: Up and Running', 'DevOps', 240000),
+('Docker Team', 'Docker Deep Dive', 'DevOps', 220000),
+('Grady Booch', 'Object-Oriented Analysis and Design', 'Phân tích hệ thống', 200000),
+('Ralph Kimball', 'The Data Warehouse Toolkit', 'Kho dữ liệu', 230000),
+('Wes McKinney', 'Python for Data Analysis', 'Phân tích dữ liệu', 190000),
+('Joel Grus', 'Data Science from Scratch', 'Khoa học dữ liệu', 200000),
+('Andreas Müller', 'Introduction to Machine Learning with Python', 'Học máy', 210000),
+('Michael Sipser', 'Introduction to the Theory of Computation', 'Lý thuyết tính toán', 250000),
+('Charles Petzold', 'Code: The Hidden Language of Computer Hardware and Software', 'Kiến thức nền tảng', 180000),
+('Al Sweigart', 'Automate the Boring Stuff with Python', 'Lập trình Python', 170000),
+('Gene Kim', 'The Phoenix Project', 'Quản lý CNTT', 190000),
+('Kevin Mitnick', 'The Art of Invisibility', 'An ninh mạng', 200000),
+('Jon Erickson', 'Hacking: The Art of Exploitation', 'An ninh mạng', 230000),
+('William Shotts', 'The Linux Command Line', 'Hệ điều hành Linux', 180000);
+
+INSERT INTO tblBorrowSlip (borrowDate, dueDate, readerId) VALUES 
+('2025-01-10', DATE_ADD('2025-01-10', INTERVAL 3 MONTH), 2), 
+('2025-02-15', DATE_ADD('2025-02-15', INTERVAL 3 MONTH), 2), 
+('2025-03-20', DATE_ADD('2025-03-20', INTERVAL 3 MONTH), 2), 
+('2025-06-05', DATE_ADD('2025-06-05', INTERVAL 3 MONTH), 2), 
+-- Reader 2 
+('2025-01-12', DATE_ADD('2025-01-12', INTERVAL 3 MONTH), 3), 
+('2025-03-18', DATE_ADD('2025-03-18', INTERVAL 3 MONTH), 3), 
+('2025-05-22', DATE_ADD('2025-05-22', INTERVAL 3 MONTH), 3), 
+-- Reader 3
+('2025-02-10', DATE_ADD('2025-02-10', INTERVAL 3 MONTH), 4), 
+('2025-04-01', DATE_ADD('2025-04-01', INTERVAL 3 MONTH), 4), 
+('2025-07-12', DATE_ADD('2025-07-12', INTERVAL 3 MONTH), 4), 
+-- Reader 4 
+('2025-01-25', DATE_ADD('2025-01-25', INTERVAL 3 MONTH), 5),
+('2025-03-14', DATE_ADD('2025-03-14', INTERVAL 3 MONTH), 5), 
+('2025-06-02', DATE_ADD('2025-06-02', INTERVAL 3 MONTH), 5), 
+('2025-09-10', DATE_ADD('2025-09-10', INTERVAL 3 MONTH), 5), 
+-- Reader 5 
+('2025-02-08', DATE_ADD('2025-02-08', INTERVAL 3 MONTH), 6), 
+('2025-04-22', DATE_ADD('2025-04-22', INTERVAL 3 MONTH), 6), 
+('2025-06-18', DATE_ADD('2025-06-18', INTERVAL 3 MONTH), 6), 
+-- Reader 6 
+('2025-01-17', DATE_ADD('2025-01-17', INTERVAL 3 MONTH), 7), 
+('2025-03-25', DATE_ADD('2025-03-25', INTERVAL 3 MONTH), 7), 
+('2025-05-05', DATE_ADD('2025-05-05', INTERVAL 3 MONTH), 7), 
+('2025-08-10', DATE_ADD('2025-08-10', INTERVAL 3 MONTH), 7), 
+-- Reader 7 
+('2025-02-01', DATE_ADD('2025-02-01', INTERVAL 3 MONTH), 8), 
+('2025-03-29', DATE_ADD('2025-03-29', INTERVAL 3 MONTH), 8), 
+('2025-05-15', DATE_ADD('2025-05-15', INTERVAL 3 MONTH), 8), 
+('2025-09-22', DATE_ADD('2025-09-22', INTERVAL 3 MONTH), 8), 
+-- Reader 8 
+('2025-01-05', DATE_ADD('2025-01-05', INTERVAL 3 MONTH), 9), 
+('2025-02-20', DATE_ADD('2025-02-20', INTERVAL 3 MONTH), 9), 
+('2025-04-10', DATE_ADD('2025-04-10', INTERVAL 3 MONTH), 9), 
+('2025-06-30', DATE_ADD('2025-06-30', INTERVAL 3 MONTH), 9), 
+-- Reader 9 
+('2025-03-01', DATE_ADD('2025-03-01', INTERVAL 3 MONTH), 10), 
+('2025-04-20', DATE_ADD('2025-04-20', INTERVAL 3 MONTH), 10), 
+('2025-07-12', DATE_ADD('2025-07-12', INTERVAL 3 MONTH), 10), 
+('2025-09-15', DATE_ADD('2025-09-15', INTERVAL 3 MONTH), 10), 
+-- Reader 10 
+('2025-02-10', DATE_ADD('2025-02-10', INTERVAL 3 MONTH), 11), 
+('2025-05-02', DATE_ADD('2025-05-02', INTERVAL 3 MONTH), 11), 
+('2025-07-28', DATE_ADD('2025-07-28', INTERVAL 3 MONTH), 11), 
+('2025-10-10', DATE_ADD('2025-10-10', INTERVAL 3 MONTH), 11); 
+INSERT INTO tblBorrowSlip (borrowDate, dueDate, readerId) VALUES 
+-- Reader 12 
+('2025-01-05', DATE_ADD('2025-01-05', INTERVAL 3 MONTH), 12), 
+('2025-03-10', DATE_ADD('2025-03-10', INTERVAL 3 MONTH), 12), 
+('2025-06-01', DATE_ADD('2025-06-01', INTERVAL 3 MONTH), 12), 
+-- Reader 13 
+('2025-02-15', DATE_ADD('2025-02-15', INTERVAL 3 MONTH), 13), 
+('2025-05-20', DATE_ADD('2025-05-20', INTERVAL 3 MONTH), 13), 
+-- Reader 14 
+('2025-01-22', DATE_ADD('2025-01-22', INTERVAL 3 MONTH), 14), 
+('2025-02-28', DATE_ADD('2025-02-28', INTERVAL 3 MONTH), 14), 
+('2025-04-10', DATE_ADD('2025-04-10', INTERVAL 3 MONTH), 14), 
+('2025-06-25', DATE_ADD('2025-06-25', INTERVAL 3 MONTH), 14), 
+-- Reader 15 
+('2025-03-03', DATE_ADD('2025-03-03', INTERVAL 3 MONTH), 15), 
+-- Reader 16 
+('2025-01-08', DATE_ADD('2025-01-08', INTERVAL 3 MONTH), 16), ('2025-04-12', DATE_ADD('2025-04-12', INTERVAL 3 MONTH), 16), ('2025-07-15', DATE_ADD('2025-07-15', INTERVAL 3 MONTH), 16), ('2025-09-20', DATE_ADD('2025-09-20', INTERVAL 3 MONTH), 16), ('2025-11-02', DATE_ADD('2025-11-02', INTERVAL 3 MONTH), 16), -- Reader 17 
+('2025-02-01', DATE_ADD('2025-02-01', INTERVAL 3 MONTH), 17), ('2025-05-18', DATE_ADD('2025-05-18', INTERVAL 3 MONTH), 17), -- Reader 18 
+('2025-03-11', DATE_ADD('2025-03-11', INTERVAL 3 MONTH), 18), ('2025-05-09', DATE_ADD('2025-05-09', INTERVAL 3 MONTH), 18), ('2025-07-23', DATE_ADD('2025-07-23', INTERVAL 3 MONTH), 18), ('2025-09-02', DATE_ADD('2025-09-02', INTERVAL 3 MONTH), 18), ('2025-10-11', DATE_ADD('2025-10-11', INTERVAL 3 MONTH), 18), ('2025-12-15', DATE_ADD('2025-12-15', INTERVAL 3 MONTH), 18), -- Reader 19 
+('2025-01-09', DATE_ADD('2025-01-09', INTERVAL 3 MONTH), 19), -- Reader 20 
+('2025-02-17', DATE_ADD('2025-02-17', INTERVAL 3 MONTH), 20), ('2025-05-14', DATE_ADD('2025-05-14', INTERVAL 3 MONTH), 20), ('2025-08-09', DATE_ADD('2025-08-09', INTERVAL 3 MONTH), 20), ('2025-10-20', DATE_ADD('2025-10-20', INTERVAL 3 MONTH), 20), -- Reader 21 
+('2025-04-05', DATE_ADD('2025-04-05', INTERVAL 3 MONTH), 21), ('2025-06-08', DATE_ADD('2025-06-08', INTERVAL 3 MONTH), 21), ('2025-09-11', DATE_ADD('2025-09-11', INTERVAL 3 MONTH), 21), ('2025-12-01', DATE_ADD('2025-12-01', INTERVAL 3 MONTH), 21); -- ======================================= -- DỮ LIỆU CHI TIẾT MƯỢN TÀI LIỆU (2–5 tài liệu mỗi phiếu) -- ======================================= 
+INSERT INTO tblBorrowDocument (borrowSlipId, documentId) VALUES -- Reader 1 
+(1,1),(1,2),(1,3), (2,4),(2,5),(2,6),(2,7), (3,8),(3,9), (4,10),(4,11),(4,12), -- Reader 2 
+(5,13),(5,14), (6,15),(6,16),(6,17), (7,18),(7,19),(7,20), -- Reader 3 
+(8,21),(8,22), (9,23),(9,24),(9,25), (10,26),(10,27),(10,28), -- Reader 4 
+(11,29),(11,30),(11,31), (12,32),(12,33), (13,34),(13,35),(13,36), (14,37),(14,38),(14,39), -- Reader 5 
+(15,40),(15,41), (16,42),(16,43),(16,44), (17,45),(17,46),(17,47), -- Reader 6 
+(18,48),(18,49),(18,50), (19,1),(19,2), (20,3),(20,4),(20,5), (21,6),(21,7),(21,8), -- Reader 7 
+(22,9),(22,10),(22,11), (23,12),(23,13),(23,14), (24,15),(24,16),(24,17), -- Reader 8 
+(25,18),(25,19), (26,20),(26,21),(26,22), (27,23),(27,24),(27,25), (28,26),(28,27),(28,28), -- Reader 9 
+(29,29),(29,30), (30,31),(30,32),(30,33), (31,34),(31,35),(31,36), (32,37),(32,38),(32,39), -- Reader 10
+(33,40),(33,41), (34,42),(34,43),(34,44), (35,45),(35,46),(35,47), (36,48),(36,49),(36,50); INSERT INTO tblBorrowDocument (borrowSlipId, documentId) VALUES -- Reader 12 
+(37, 1),(37,2), (38,3),(38,4),(38,5), (39,6), -- Reader 13
+(40,7),(40,8),(40,9), (41,10),(41,11), -- Reader 14 
+(42,12),(42,13),(42,14),(42,15), (43,16),(43,17), (44,18),(44,19),(44,20), (45,21),(45,22),(45,23), -- Reader 15 
+(46,24),(46,25),(46,26),(46,27),(46,28),(46,29), -- Reader 16 
+(47,30),(47,31), (48,32),(48,33),(48,34), (49,35), (50,36),(50,37),(50,38),(50,39), (51,40),(51,41),(51,42), -- Reader 17 
+(52,43),(52,44), (53,45),(53,46),(53,47), -- Reader 18 
+(54,48),(54,49),(54,50), (55,1), (56,2),(56,3),(56,4),(56,5),(56,6), (57,7),(57,8),(57,9), (58,10),(58,11),(58,12), -- Reader 19 
+(59,13),(59,14),(59,15),(59,16), -- Reader 20 
+(60,17),(60,18), (61,19),(61,20),(61,21), (62,22),(62,23),(62,24),(62,25), (63,26),(63,27),(63,28),(63,29),(63,30),(63,31), -- Reader 21 
+(64,32),(64,33),(64,34),(64,35), (65,36),(65,37), (66,38),(66,39),(66,40), (67,41),(67,42),(67,43),(67,44),(67,45);
+
